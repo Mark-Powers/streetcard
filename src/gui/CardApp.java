@@ -1,3 +1,4 @@
+package gui;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
@@ -26,11 +27,8 @@ public class CardApp {
 			System.out.println("Guess we are going with java's defualt.");
 		}
 		
-		
-		
 		frame.add(new GamePanel(), BorderLayout.CENTER);
-		
-		
+				
 		frame.pack();
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,9 +1,9 @@
-import java.util.ArrayList;
-import java.util.Collections;
+package model;
 
-
-public class Game {
-	ArrayList<Player> players;
+public abstract class Game {
+	
+	
+/*	ArrayList<Player> players;
 	// 0 - pre-game
 	// 1 - during game
 	// 2 - post game
@@ -17,25 +17,25 @@ public class Game {
 		gameState = 0;
 	}
 	
-	/**
+	*//**
 	 * @param p Player to add to the players for this game
-	 */
+	 *//*
 	public void addPlayer(Player p){
 		players.add(p);
 	}
 	
-	/**
+	*//**
 	 * Shuffles the players, and starts the game
-	 */
+	 *//*
 	public void startGame(){
 		Collections.shuffle(players);
 		gameState = 1;
 	}
 	
-	/**
+	*//**
 	 * Checks if only one player is alive
 	 * @return true if 1 or less players are alive.
-	 */
+	 *//*
 	public boolean isOver(){
 		int playersAlive = 0;
 		for(Player p : players){
@@ -44,12 +44,13 @@ public class Game {
 			}
 		}
 		return playersAlive < 2;
+		return false;
 	}
 	
 	public void round(){
 		for(Player p : players){
 			turnState = 0;
-			p.draw();
+			//p.draw();
 			
 			
 		}
@@ -65,5 +66,5 @@ public class Game {
 	
 	public void nextTurnState(){
 		turnState++;
-	}
+	}*/
 }

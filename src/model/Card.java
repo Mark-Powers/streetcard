@@ -1,8 +1,8 @@
-import java.util.ArrayList;
+package model;
 
-
-public class Card {
-	private ArrayList<Effect> effects;
+public interface Card {
+	
+	/*private ArrayList<Effect> effects;
 	private String title;
 	private String text;
 	
@@ -12,9 +12,9 @@ public class Card {
 		effects = e;
 	}
 	
-	public void play(int state){
+	public void play(){
 		for(Effect e : effects){
-			e.affect(state);
+			//e.affect();
 		}
 	}
 	
@@ -24,5 +24,5 @@ public class Card {
 	
 	public String getText(){
 		return text;
-	}
+	}*/
 }
