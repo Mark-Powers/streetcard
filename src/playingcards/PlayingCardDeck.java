@@ -1,5 +1,8 @@
 package playingcards;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +12,11 @@ import model.Deck;
 import model.Player;
 import playingcards.kingscorner.KingsCornerPlayer;
 
-public class PlayingCardDeck implements Deck {
+public class PlayingCardDeck extends Deck {
+	private final int HEIGHT = 60;
+	private final int WIDTH = 50;
+	
+	
 	private LinkedList<PlayingCard> cards;
 	
 	public PlayingCardDeck(){
@@ -47,5 +54,11 @@ public class PlayingCardDeck implements Deck {
 				p.giveCard(draw());
 			}
 		}
+	}
+
+	@Override
+	public void draw(Graphics g, Point topLeft) {
+		g.setColor(Color.GREEN);
+		g.fillRect(topLeft.x, topLeft.y, WIDTH, HEIGHT);
 	}
 }

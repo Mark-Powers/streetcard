@@ -1,18 +1,31 @@
 package gui;
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import model.DrawableWithLocation;
+import model.Game;
+
 public class GamePanel extends JPanel {
-	public GamePanel() {
+	
+	private Game game;
+	
+	
+	public GamePanel(Game game) {
+		this.game = game;
 	}
 
 	/**
 	 * Draws the proper screen, probably just temporary
 	 */
 	public void paintComponent(Graphics g) {
-		g.setColor(new Color(255, 0, 0));
-		g.fill3DRect(10, 10, 40, 40, false);
-	}
+		int xCenter = getWidth()/2;
+		int yCenter = getHeight()/2;
+				
+		for(DrawableWithLocation dwl : game.getDrawableLocations()){
+			dwl.point.translate(xCenter, yCenter);
+			dwl.drawable.draw(g, dwl.point);
+		}
+		
+	} 
 }

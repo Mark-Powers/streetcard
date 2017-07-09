@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public abstract class Game {
 	
 //	public void start(){
@@ -14,6 +16,7 @@ public abstract class Game {
 	public abstract Player getWinner();
 	public abstract void onGameOver();
 	public abstract void startGame();
+	public abstract ArrayList<DrawableWithLocation> getDrawableLocations();
 	
 /*	ArrayList<Player> players;
 	// 0 - pre-game

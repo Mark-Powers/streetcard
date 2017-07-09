@@ -1,10 +1,8 @@
 package model;
 
-public interface Deck {
-	public Card draw();
-	//public boolean add(Card c);
-	
-	public void shuffle();
-	
-	public int getRemaining();
+public abstract class Deck implements Drawable {
+	public abstract Card draw();
+	// public boolean add(Card c);
+	public abstract void shuffle();
+	public abstract int getRemaining();
 }

@@ -1,8 +1,10 @@
 package playingcards.kingscorner;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.DrawableWithLocation;
 import model.Game;
 import model.Player;
 import playingcards.PlayingCard;
@@ -10,6 +12,8 @@ import playingcards.PlayingCardDeck;
 import playingcards.Value;
 
 public class KingsCornerGame extends Game {
+	private final int RADIUS = 150;
+
 	private PlayingCardDeck deck;
 	private List<KingsCornerPlayer> players;
 	private PlayingCard[] boardTop;
@@ -88,7 +92,7 @@ public class KingsCornerGame extends Game {
 		if ((cardStaying == null && (to < 4 || cardToMove.getValue().equals(Value.KING)))
 				|| (cardStaying.isOneHigherThan(cardToMove) && !cardStaying.isSameColor(cardToMove))) {
 			boardTop[to] = boardTop[from];
-			boardBottom[to] = boardBottom[from];
+			//boardBottom[to] = boardBottom[from];
 			boardTop[from] = null;
 			boardBottom[from] = null;
 			return true;
@@ -98,6 +102,9 @@ public class KingsCornerGame extends Game {
 
 	@Override
 	public boolean isOver() {
+		if (deck.getRemaining() == 0) {
+			return true;
+		}
 		for (KingsCornerPlayer player : players) {
 			if (player.getNumberOfCards() == 0) {
 				return true;
@@ -119,5 +126,45 @@ public class KingsCornerGame extends Game {
 	@Override
 	public void onGameOver() {
 		System.out.println("Player " + getWinner().getName() + " has won!");
+	}
+
+	@Override
+	public ArrayList<DrawableWithLocation> getDrawableLocations() {
+		ArrayList<DrawableWithLocation> positions = new ArrayList<DrawableWithLocation>();
+
+		for (int i = 0; i < 4; i++) {
+			if (boardBottom[i] != null) {
+				positions.add(new DrawableWithLocation(boardBottom[i], getPointOnCircle(RADIUS, i, 4)));
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			if (boardBottom[4 + i] != null) {
+				Point p = getPointOnCircle(RADIUS, 2 * i + 1, 8);
+				positions.add(new DrawableWithLocation(boardBottom[4 + i], p));
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			if (boardTop[i] != null && !boardTop[i].equals(boardBottom[i])) {
+				Point p = getPointOnCircle(RADIUS, i, boardTop.length);
+				p.translate(RADIUS / 10, RADIUS / 10);
+				positions.add(new DrawableWithLocation(boardTop[i], p));
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			if (boardTop[4 + i] != null && !boardTop[4 + i].equals(boardBottom[4 + i])) {
+				Point p = getPointOnCircle(RADIUS, 2 * i + 1, 8);
+				p.translate(RADIUS / 10, RADIUS / 10);
+				positions.add(new DrawableWithLocation(boardTop[4 + i], p));
+			}
+		}
+		positions.add(new DrawableWithLocation(deck, new Point(0, 0)));
+
+		return positions;
+	}
+
+	private Point getPointOnCircle(int radius, int i, int n) {
+		int x = (int) (Math.cos(2 * Math.PI * (((float) i) / n)) * RADIUS);
+		int y = (int) (Math.sin(2 * Math.PI * (((float) i) / n)) * RADIUS);
+		return new Point(x, y);
 	}
 }

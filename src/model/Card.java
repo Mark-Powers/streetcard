@@ -1,8 +1,8 @@
 package model;
 
-public interface Card {
+public abstract class Card implements Drawable{
 	
-	public String name();
+	public abstract String name();
 	
 	/*private ArrayList<Effect> effects;
 	private String title;

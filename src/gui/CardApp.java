@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+import model.Game;
 import playingcards.kingscorner.KingsCornerGame;
 import playingcards.kingscorner.KingsCornerPlayer;
 
@@ -21,14 +22,15 @@ public class CardApp {
 		players.add(new KingsCornerPlayer("1", game));
 		players.add(new KingsCornerPlayer("2", game));
 		game.setPlayers(players);
+	
 		game.startGame();
+		new CardApp(game);
 		
-		//new CardApp();
 	}
 	
 	JFrame frame;
 	
-	public CardApp(){
+	public CardApp(Game game){
 		frame = new JFrame();
 		frame.setLayout(new BorderLayout());
 		frame.setTitle(title);		
@@ -38,7 +40,7 @@ public class CardApp {
 			System.out.println("Guess we are going with java's defualt.");
 		}
 		
-		frame.add(new GamePanel(), BorderLayout.CENTER);
+		frame.add(new GamePanel(game), BorderLayout.CENTER);
 				
 		frame.pack();
 		frame.setSize(width, height);
