@@ -2,6 +2,8 @@ package model;
 
 public interface Card {
 	
+	public String name();
+	
 	/*private ArrayList<Effect> effects;
 	private String title;
 	private String text;

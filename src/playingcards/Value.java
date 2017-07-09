@@ -2,7 +2,6 @@ package playingcards;
 
 public enum Value {
 	ACE,
-	ONE,
 	TWO,
 	THREE,
 	FOUR,
@@ -18,6 +17,6 @@ public enum Value {
 	
 	@Override
 	public String toString(){
-		return name().substring(0, 1).toUpperCase() + name().toLowerCase();
+		return name().substring(0, 1).toUpperCase() + name().substring(1).toLowerCase();
 	}
 }

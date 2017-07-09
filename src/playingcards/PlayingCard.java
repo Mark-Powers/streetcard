@@ -23,11 +23,16 @@ public class PlayingCard implements Card {
 		return suit.isSameColor(other.getSuit());
 	}
 
-	public boolean isHigherThen(PlayingCard other) {
-		return value.ordinal() - other.getValue().ordinal() > 0;
+	public boolean isOneHigherThan(PlayingCard other) {
+		return value.ordinal() - other.getValue().ordinal() == 1;
 	}
 
+	@Override
 	public String name() {
 		return value.toString() + " of " + suit.toString();
+	}
+	
+	public String abbrv(){
+		return suit.toString().charAt(0) + "-" + value.toString();
 	}
 }

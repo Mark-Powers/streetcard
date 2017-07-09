@@ -2,6 +2,18 @@ package model;
 
 public abstract class Game {
 	
+//	public void start(){
+//		
+//	}
+//	
+//	public void begin(){
+//		
+//	}
+	
+	public abstract boolean isOver();
+	public abstract Player getWinner();
+	public abstract void onGameOver();
+	public abstract void startGame();
 	
 /*	ArrayList<Player> players;
 	// 0 - pre-game

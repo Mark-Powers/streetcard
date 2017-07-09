@@ -1,11 +1,25 @@
 package model;
-public interface Player {
+
+public abstract class Player {
+	protected Hand hand;
+
+	public abstract String getName();
+
+	public abstract void startTurn();
+
+	public abstract void doTurn();
+
+	public abstract void endTurn();
+
+	public Card discard() {
+		return hand.discardRandom();
+	}
+
+	public Card discardIndex(int index) {
+		return hand.discardIndex(index);
+	}
 	
-	public void giveCard(Card c);
-	
-	public String getName();
-	public void startTurn();
-	public void endTurn();
-	public Card discard();
-	public Card discardIndex(int index);
+	public void giveCard(Card c){
+		hand.add(c);
+	}
 }

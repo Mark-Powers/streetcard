@@ -38,8 +38,8 @@ public class PlayingCardDeck implements Deck {
 	}
 	
 	public void deal(List<KingsCornerPlayer> players, int amount){
-		if(players.size()*amount < cards.size()){
-			throw new RuntimeException("Not enough cards!");
+		if(players.size()*amount > cards.size()){
+			throw new RuntimeException("Not enough cards! " + cards.size());
 		}
 		for(int i = 0; i<amount; i++){
 			for(Player p : players){

@@ -1,8 +1,12 @@
 package gui;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+
+import playingcards.KingsCornerGame;
+import playingcards.KingsCornerPlayer;
 
 
 public class CardApp {
@@ -12,7 +16,14 @@ public class CardApp {
 	public static final String title = "A Card Game";
 	
 	public static void main(String args[]){
-		new CardApp();
+		KingsCornerGame game = new KingsCornerGame();
+		ArrayList<KingsCornerPlayer> players = new ArrayList<KingsCornerPlayer>();
+		players.add(new KingsCornerPlayer("1", game));
+		players.add(new KingsCornerPlayer("2", game));
+		game.setPlayers(players);
+		game.startGame();
+		
+		//new CardApp();
 	}
 	
 	JFrame frame;
