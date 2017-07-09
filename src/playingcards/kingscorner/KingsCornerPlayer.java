@@ -40,7 +40,7 @@ public class KingsCornerPlayer extends Player {
 
 	@Override
 	public void doTurn() {
-		System.out.print("Board: ");
+		System.out.print("\nBoard:\n");
 		for (PlayingCard c : game.getBoardTop()) {
 			if (c != null) {
 				System.out.print(c.abbrv() + "\t");
@@ -49,6 +49,14 @@ public class KingsCornerPlayer extends Player {
 			}
 		}
 		System.out.println();
+		for (PlayingCard c : game.getBoardBottom()) {
+			if (c != null) {
+				System.out.print(c.abbrv() + "\t");
+			} else {
+				System.out.print("___\t");
+			}
+		}
+		System.out.println("\n");
 		ArrayList<int[]> moves = possibleMoves();
 		while (moves.size() > 0) {
 			int[] move = moves.get(0);
@@ -62,7 +70,7 @@ public class KingsCornerPlayer extends Player {
 			}
 			moves = possibleMoves();
 		}
-		System.out.println();
+		System.out.println("\n");
 	}
 
 	@Override
@@ -93,7 +101,7 @@ public class KingsCornerPlayer extends Player {
 			for (int j = 0; j < boardTop.length; j++) {
 				PlayingCard cardToMove = boardBottom[j];
 				if (cardToMove != null && 
-						((boardTopCard == null && (i < 4 || cardToMove.getValue().equals(Value.KING)))
+						((boardTopCard == null && i >= 4 && j < 4 && cardToMove.getValue().equals(Value.KING))
 						|| (boardTopCard != null && boardTopCard.isOneHigherThan(cardToMove) && !boardTopCard.isSameColor(cardToMove)))) {
 					int[] move = new int[3];
 					move[0] = 1;

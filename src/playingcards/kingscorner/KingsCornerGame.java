@@ -88,8 +88,9 @@ public class KingsCornerGame extends Game {
 		if ((cardStaying == null && (to < 4 || cardToMove.getValue().equals(Value.KING)))
 				|| (cardStaying.isOneHigherThan(cardToMove) && !cardStaying.isSameColor(cardToMove))) {
 			boardTop[to] = boardTop[from];
-			boardBottom[from] = null;
+			boardBottom[to] = boardBottom[from];
 			boardTop[from] = null;
+			boardBottom[from] = null;
 			return true;
 		}
 		return false;
