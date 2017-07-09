@@ -1,21 +1,26 @@
-package playingcards;
+package playingcards.kingscorner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Game;
 import model.Player;
+import playingcards.PlayingCard;
+import playingcards.PlayingCardDeck;
+import playingcards.Value;
 
 public class KingsCornerGame extends Game {
 	private PlayingCardDeck deck;
 	private List<KingsCornerPlayer> players;
-	private PlayingCard[] board;
-	int currentPlayer;
+	private PlayingCard[] boardTop;
+	private PlayingCard[] boardBottom;
+	private int currentPlayer;
 
 	public KingsCornerGame() {
 		players = new ArrayList<KingsCornerPlayer>();
 		deck = new PlayingCardDeck();
-		board = new PlayingCard[8];
+		boardTop = new PlayingCard[8];
+		boardBottom = new PlayingCard[8];
 
 		currentPlayer = 0;
 	}
@@ -29,7 +34,8 @@ public class KingsCornerGame extends Game {
 		deck.deal(players, 7);
 
 		for (int i = 0; i < 4; i++) {
-			board[i] = draw();
+			boardTop[i] = draw();
+			boardBottom[i] = boardTop[i];
 		}
 
 		while (!isOver()) {
@@ -50,30 +56,40 @@ public class KingsCornerGame extends Game {
 		return (PlayingCard) deck.draw();
 	}
 
-	public PlayingCard[] getBoard() {
-		return board;
+	public PlayingCard[] getBoardTop() {
+		return boardTop;
+	}
+
+	public PlayingCard[] getBoardBottom() {
+		return boardBottom;
 	}
 
 	public boolean play(PlayingCard card, int index) {
-		PlayingCard bottom = board[index];
-		if (board[index] == null && (card.getValue().equals(Value.KING) || index < 4)) {
-			board[index] = card;
+		PlayingCard bottom = boardTop[index];
+		// Played a card in a null spot
+		if (boardTop[index] == null && (card.getValue().equals(Value.KING) || index < 4)) {
+			boardTop[index] = card;
+			boardBottom[index] = card;
 			return true;
 		}
+		// Played a card on top of another
 		if (bottom.isOneHigherThan(card) && !bottom.isSameColor(card)) {
-			board[index] = card;
+			boardTop[index] = card;
 			return true;
 		}
 		return false;
 	}
 
 	public boolean move(int from, int to) {
-		PlayingCard card = board[from];
-		PlayingCard bottom = board[to];
-		if ((bottom == null && card.getValue().equals(Value.KING))
-				|| (bottom.isOneHigherThan(card) && !bottom.isSameColor(card))) {
-			board[to] = card;
-			board[from] = null;
+		PlayingCard cardToMove = boardBottom[from];
+		PlayingCard cardStaying = boardTop[to];
+		// First condition is moving to a null space
+		// Second condition is moving onto another
+		if ((cardStaying == null && (to < 4 || cardToMove.getValue().equals(Value.KING)))
+				|| (cardStaying.isOneHigherThan(cardToMove) && !cardStaying.isSameColor(cardToMove))) {
+			boardTop[to] = boardTop[from];
+			boardBottom[from] = null;
+			boardTop[from] = null;
 			return true;
 		}
 		return false;

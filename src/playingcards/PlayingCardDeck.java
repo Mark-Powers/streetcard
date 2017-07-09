@@ -7,6 +7,7 @@ import java.util.List;
 import model.Card;
 import model.Deck;
 import model.Player;
+import playingcards.kingscorner.KingsCornerPlayer;
 
 public class PlayingCardDeck implements Deck {
 	private LinkedList<PlayingCard> cards;

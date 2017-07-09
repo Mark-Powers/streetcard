@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import playingcards.KingsCornerGame;
-import playingcards.KingsCornerPlayer;
+import playingcards.kingscorner.KingsCornerGame;
+import playingcards.kingscorner.KingsCornerPlayer;
 
 
 public class CardApp {
