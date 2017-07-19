@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import model.Game;
-import playingcards.kingscorner.KingsCornerGame;
-import playingcards.kingscorner.KingsCornerPlayer;
+import playingcards.crazyeights.CrazyEightsGame;
+import playingcards.crazyeights.CrazyEightsPlayer;
 
 public class CardApp {
 
@@ -18,12 +18,11 @@ public class CardApp {
 
 	public static void main(String args[]) {
 
-		KingsCornerGame game = new KingsCornerGame();
+		/*KingsCornerGame game = new KingsCornerGame();
 		ArrayList<KingsCornerPlayer> players = new ArrayList<KingsCornerPlayer>();
 		players.add(new KingsCornerPlayer("1", game));
-		players.add(new KingsCornerPlayer("2", game));
+		players.add(new KingsCornerPlayer("2", game));*/
 		
-		/*
 		CrazyEightsGame game = new CrazyEightsGame();
 		
 		ArrayList<CrazyEightsPlayer> players = new ArrayList<CrazyEightsPlayer>();
@@ -31,7 +30,6 @@ public class CardApp {
 		players.add(new CrazyEightsPlayer("Mary", game));
 		players.add(new CrazyEightsPlayer("Joe", game));
 		players.add(new CrazyEightsPlayer("Sarah", game));
-		*/
 		
 		game.setPlayers(players);
 
