@@ -7,8 +7,8 @@ import java.awt.Point;
 import model.Card;
 
 public class PlayingCard extends Card {
-	private final int HEIGHT = 90;
-	private final int WIDTH = 70;
+	public static final int HEIGHT = 90;
+	public static final int WIDTH = 70;
 	
 	private Suit suit;
 	private Value value;

@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Area;
+import model.Card;
 import model.DrawableWithLocation;
 import model.Game;
 import model.Player;
@@ -92,7 +94,7 @@ public class KingsCornerGame extends Game {
 		if ((cardStaying == null && (to < 4 || cardToMove.getValue().equals(Value.KING)))
 				|| (cardStaying.isOneHigherThan(cardToMove) && !cardStaying.isSameColor(cardToMove))) {
 			boardTop[to] = boardTop[from];
-			//boardBottom[to] = boardBottom[from];
+			// boardBottom[to] = boardBottom[from];
 			boardTop[from] = null;
 			boardBottom[from] = null;
 			return true;
@@ -160,6 +162,30 @@ public class KingsCornerGame extends Game {
 		positions.add(new DrawableWithLocation(deck, new Point(0, 0)));
 
 		return positions;
+	}
+
+	@Override
+	public boolean play(Point point, Card c) {
+		ArrayList<Area> playableAreas = new ArrayList<Area>();
+		for (int i = 0; i < 4; i++) {
+			Point p1 = getPointOnCircle(RADIUS, i, 4);
+			playableAreas.add(new Area(p1, new Point(p1.x + PlayingCard.WIDTH, p1.y + PlayingCard.HEIGHT)));
+		}
+		for (int i = 0; i < 4; i++) {
+			Point p1 = getPointOnCircle(RADIUS, 2 * i + 1, 8);
+			playableAreas.add(new Area(p1, new Point(p1.x + PlayingCard.WIDTH, p1.y + PlayingCard.HEIGHT)));
+		}
+		
+		for (int index = 0; index < playableAreas.size(); index++) {
+			Area a = playableAreas.get(index);
+			System.out.println(String.format("%d < %d < %d and %d < %d < %d", a.getTopLeft().x, point.x,
+					a.getBotRight().x, a.getTopLeft().y, point.y, a.getBotRight().y));
+			if (a.contains(point)) {
+				System.out.println("Index " + index);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private Point getPointOnCircle(int radius, int i, int n) {
