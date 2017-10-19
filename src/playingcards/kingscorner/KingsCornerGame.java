@@ -189,8 +189,8 @@ public class KingsCornerGame extends Game {
 	}
 
 	private Point getPointOnCircle(int radius, int i, int n) {
-		int x = (int) (Math.cos(2 * Math.PI * (((float) i) / n)) * RADIUS);
-		int y = (int) (Math.sin(2 * Math.PI * (((float) i) / n)) * RADIUS);
+		int x = (int) (Math.cos(2 * Math.PI * (((float) i) / n)) * radius);
+		int y = (int) (Math.sin(2 * Math.PI * (((float) i) / n)) * radius);
 		return new Point(x, y);
 	}
 }

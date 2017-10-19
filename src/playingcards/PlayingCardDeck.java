@@ -10,7 +10,6 @@ import java.util.List;
 import model.Card;
 import model.Deck;
 import model.Player;
-import playingcards.kingscorner.KingsCornerPlayer;
 
 public class PlayingCardDeck extends Deck {
 	private final int HEIGHT = 60;
@@ -45,7 +44,7 @@ public class PlayingCardDeck extends Deck {
 		return cards.size();
 	}
 	
-	public void deal(List<KingsCornerPlayer> players, int amount){
+	public void deal(List<? extends Player> players, int amount){
 		if(players.size()*amount > cards.size()){
 			throw new RuntimeException("Not enough cards! " + cards.size());
 		}
